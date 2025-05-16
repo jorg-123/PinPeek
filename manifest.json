@@ -1,0 +1,35 @@
+{
+  "name": "PinPeek",
+  "description": "Shows when a Pinterest pin was.. pinned.",
+  "version": "0.1",
+  "manifest_version": 3,
+
+  "icons": {
+    "16":  "icon.png",
+    "32":  "icon.png",
+    "48":  "icon.png", 
+    "128": "icon.png"
+  },
+
+  "action": {
+    "default_title": "PinPeek",
+    "default_popup": "settings.html",
+    "default_icon": "icon.png"
+  },
+
+  "background": { "service_worker": "bg.js", "type": "module" },
+
+  "content_scripts": [{
+    "matches": ["*://*.pinterest.com/*"],
+    "js": ["content.js"],
+    "run_at": "document_start"
+  }],
+
+  "web_accessible_resources": [{
+    "resources": ["pagehook.js"],
+    "matches": ["*://*.pinterest.com/*"]
+  }],
+  "permissions": ["storage"],
+  "host_permissions": ["*://*.pinterest.com/*"]
+
+}
